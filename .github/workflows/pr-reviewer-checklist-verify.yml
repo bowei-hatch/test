@@ -29,9 +29,11 @@ jobs:
               } else if (body.includes('- [ ] PR Reviewer')) {
                 reviewerSignedOff = false;
               }
-              console.log({reviewerSignedOff});
               console.log(comment.body.trim());
+              console.log({reviewerSignedOff});
             }
-            if (!reviewerSignedOff) {
+            if (reviewerSignedOff) {
+              console.log('passing, reviewer did sign off');
+            } else {
               throw new Error("PR reviewer did not sign off!");
             }
