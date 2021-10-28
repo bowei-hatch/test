@@ -6,6 +6,31 @@ on:
       - main
   issue_comment:
     types: [created, edited, deleted]
+# NOTE(bowei): issue_comment gets triggered from "default" scope, not pull request scope,
+# so we have to do some hacky stuff to get the PR check to pass when triggered by a PR reviewer editing their checklist
+# see: 
+# https://docs.github.com/en/rest/reference/actions?query=retry#list-workflow-runs
+# https://docs.github.com/en/rest/reference/actions?query=retry#re-run-a-workflow
+# https://octokit.github.io/rest.js/v18#actions-list-workflow-runs
+# https://github.com/actions/github-script
+# https://stackoverflow.com/questions/56435547/how-do-i-re-run-github-actions
+# https://pakstech.com/blog/gh-actions-issue-comments/
+# https://github.community/t/trigger-action-via-pull-request-message/17630
+# https://blog.ksoichiro.com/post/2021/03/comment-on-pr-when-approved/
+# https://github.com/actions/checkout#checkout-pull-request-head-commit-instead-of-merge-commit
+# https://github.com/actions/checkout/issues/331
+# https://github.community/t/on-issue-comment-events-are-not-triggering-workflows/16784/9
+# https://github.com/TeamAmaze/AmazeFileManager/blob/master/.github/workflows/android-debug-artifact-ondemand.yml
+# https://github.com/adrianjost/workflow-trigger-comment-example/blob/master/.github/workflows/demo.yml
+# https://stackoverflow.com/questions/59518627/github-action-for-issue-comment-doesnt-shown-in-checks-for-pr <- this one
+# https://github.community/t/github-actions-as-status-checks/16666/16 <- also
+# https://sanderknape.com/2020/05/deploy-pull-requests-github-actions-deployments/
+# https://github.com/Khan/pull-request-comment-trigger
+# https://github.com/marketplace/actions/pull-request-comment-branch
+# https://docs.github.com/en/developers/webhooks-and-events/webhooks/webhook-events-and-payloads#issue_comment
+# https://docs.github.com/en/actions/learn-github-actions/events-that-trigger-workflows#workflow_call
+# 
+# 
       
 jobs:
   verify-checklist-completed:
