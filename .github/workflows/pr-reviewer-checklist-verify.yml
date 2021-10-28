@@ -42,12 +42,12 @@ jobs:
       - uses: actions/github-script@v5
         with:
           script: |
-            console.log(github.rest.actions);
+            console.log(github.rest.actions.retryWorkflow);
             const workflowRuns = await github.rest.actions.listWorkflowRuns({
               owner: context.repo.owner,
               repo: context.repo.repo,
               workflow_id: 'pr-reviewer-checklist-verify.yml'
-            });
+            }).data.workflow_runs;
             console.log({workflowRuns});
             
             /* await github.actions.reRunWorkflow({
