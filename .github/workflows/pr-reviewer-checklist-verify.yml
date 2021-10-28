@@ -1,0 +1,26 @@
+name: Verify that PR reviewer checklist has been filled out for PRs to main
+
+on:
+  pull_request:
+    branches:
+      - main
+      
+jobs:
+  verify-checklist-completed:
+    runs-on: ubuntu-latest
+    permissions:
+      issues: write
+      pull-requests: write
+    steps:
+      - uses: actions/github-script@v5
+        with:
+          script: |
+            console.log(github.rest.issues)
+            (() => { github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: `
+              - [ ] PR Reviewer (@${{ github.event.review.user.login }}) confirms that this PR has been or will be manually tested
+             `
+            }) })
