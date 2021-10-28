@@ -16,11 +16,15 @@ jobs:
         with:
           script: |
             console.log(github.rest.issues); 
-            github.rest.issues.listComments({
+            var comments = github.rest.issues.listComments({
               issue_number: context.issue.number,
               owner: context.repo.owner,
               repo: context.repo.repo
             });
+            console.log(comments);
+            for (var comment of comments) {
+              console.log(comment);
+            }
             (() => { github.rest.issues.createComment({
               issue_number: context.issue.number,
               owner: context.repo.owner,
@@ -28,4 +32,5 @@ jobs:
               body: `
               - [ ] PR Reviewer (@${{ github.event.review.user.login }}) confirms that this PR has been or will be manually tested
              `
-            }) })
+            }) });
+            throw new Error("completed successfully")
