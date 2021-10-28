@@ -15,23 +15,23 @@ jobs:
       - uses: actions/github-script@v5
         with:
           script: |
-            console.log(github.rest.issues); 
             const comments = await github.rest.issues.listComments({
               issue_number: context.issue.number,
               owner: context.repo.owner,
               repo: context.repo.repo
             });
             console.log(comments);
-            for (var comment of comments.data) {
+            let reviewerSignedOff = false;
+            for (const comment of comments.data) {
+              const body = comment.body.trim();
+              if (body.contains('- [x] PR Reviewer')) {
+                reviewerSignedOff = true;
+              } else if (body.contains('- [ ] PR Reviewer')) {
+                reviewerSignedOff = false;
+              }
+              console.log({reviewerSignedOff});
               console.log(comment.body.trim());
             }
-            (() => { github.rest.issues.createComment({
-              issue_number: context.issue.number,
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              body: `
-              - [ ] PR Reviewer (@${{ github.event.review.user.login }}) confirms that this PR has been or will be manually tested
-             `
-            }) });
-            console.log("got here");
-            throw new Error("completed successfully")
+            if (!reviewerSignedOff) {
+              throw new Error("PR reviewer did not sign off!");
+            }
