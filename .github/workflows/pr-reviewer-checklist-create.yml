@@ -16,7 +16,7 @@ on:
     types: [submitted]
 
 jobs:
-  greeting:
+  create-reviewer-checklist:
     if: github.event.review.state == 'approved'    
     runs-on: ubuntu-latest
     permissions:
