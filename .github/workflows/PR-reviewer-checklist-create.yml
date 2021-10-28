@@ -1,4 +1,15 @@
-name: Greetings
+name: pr-reviewer-checklist-create
+
+# see - https://docs.github.com/en/actions/learn-github-actions/events-that-trigger-workflows
+# https://docs.github.com/en/rest/reference/pulls#reviews
+# https://docs.github.com/en/actions/learn-github-actions/contexts
+# https://docs.github.com/en/actions/learn-github-actions/contexts#env-context
+# https://stackoverflow.com/questions/59954185/github-action-split-long-command-into-multiple-lines
+# https://stackoverflow.com/questions/58066966/commenting-a-pull-request-in-a-github-action
+# https://github.community/t/feature-request-trigger-action-on-pull-request-approved/18413
+# https://github.com/actions/github-script#comment-on-an-issue
+# https://github.community/t/automatic-commenting-on-a-pr/130978
+
 
 on:
   pull_request_review:
