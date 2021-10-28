@@ -1,9 +1,9 @@
 name: Verify that PR reviewer checklist has been filled out for PRs to main
 
 on:
-  pull_request:
-    branches:
-      - main
+#  pull_request:
+#    branches:
+#      - main
   issue_comment:
     types: [created, edited, deleted]
       
