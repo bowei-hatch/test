@@ -16,16 +16,15 @@ jobs:
         with:
           script: |
             console.log(github.rest.issues); 
-            github.rest.issues.listComments({
+            const comments = await github.rest.issues.listComments({
               issue_number: context.issue.number,
               owner: context.repo.owner,
               repo: context.repo.repo
-            }).then(comments => {
-              console.log(comments);
-              for (var comment of comments) {
-                console.log(comment);
-              };
             });
+            console.log(comments);
+            for (var comment of comments.data) {
+              console.log(comment.body.trim());
+            }
             (() => { github.rest.issues.createComment({
               issue_number: context.issue.number,
               owner: context.repo.owner,
