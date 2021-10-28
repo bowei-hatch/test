@@ -4,6 +4,8 @@ on:
   pull_request:
     branches:
       - main
+  issue_comment:
+    types: [created, edited, deleted]
       
 jobs:
   verify-checklist-completed:
