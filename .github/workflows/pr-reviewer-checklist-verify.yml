@@ -42,8 +42,8 @@ jobs:
       - uses: actions/github-script@v5
         with:
           script: |
-            console.log(github.actions.reRunWorkflow);
-            const workflowRuns = await octokit.rest.actions.listWorkflowRuns({
+            console.log(github.rest.actions);
+            const workflowRuns = await github.rest.actions.listWorkflowRuns({
               owner: context.repo.owner,
               repo: context.repo.repo,
               workflow_id: 'pr-reviewer-checklist-verify.yml'
