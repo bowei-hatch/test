@@ -47,8 +47,8 @@ jobs:
               owner: context.repo.owner,
               repo: context.repo.repo,
               workflow_id: 'pr-reviewer-checklist-verify.yml'
-            }).data.workflow_runs;
-            console.log({workflowRuns});
+            });
+            console.log(workflowRuns.data);
             
             /* await github.actions.reRunWorkflow({
               owner: context.repo.owner,
