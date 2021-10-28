@@ -24,9 +24,9 @@ jobs:
             let reviewerSignedOff = false;
             for (const comment of comments.data) {
               const body = comment.body.trim();
-              if (body.contains('- [x] PR Reviewer')) {
+              if (body.includes('- [x] PR Reviewer')) {
                 reviewerSignedOff = true;
-              } else if (body.contains('- [ ] PR Reviewer')) {
+              } else if (body.includes('- [ ] PR Reviewer')) {
                 reviewerSignedOff = false;
               }
               console.log({reviewerSignedOff});
