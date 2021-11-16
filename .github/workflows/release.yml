@@ -7,6 +7,7 @@ on:
 
 jobs:
   cleaner:
+    runs-on: ubuntu-latest
 #    runs-on:
 #      - self-hosted
 #      - ci
@@ -16,6 +17,7 @@ jobs:
           echo "Cleaning up previous run"
           rm -rf "${{ github.workspace }}"
   push:
+    runs-on: ubuntu-latest
 #    runs-on:
 #      - self-hosted
 #      - ci
