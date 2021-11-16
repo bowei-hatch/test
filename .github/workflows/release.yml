@@ -27,7 +27,7 @@ jobs:
         uses: peter-evans/repository-dispatch@v1.1.1
         with:
           token: ${{ secrets.CI_GITHUB_ACTIONS_RUNNER_TOKEN }}
-          repository: hatchcredit/sakura-spark-starter
+          repository: bowei-hatch/test
           event-type: deploy
           client-payload: |
             {"ref": "${{ github.ref }}",
