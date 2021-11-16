@@ -1,8 +1,8 @@
 #!/bin/bash
 
 echo 'this is run_all.sh'
-set -xeo
+set -xeo pipefail
 pwd
-"$pwd"/should_pass.sh
-#"$pwd"/should_fail.sh
+bash "$pwd"/should_pass.sh
+#bash "$pwd"/should_fail.sh
 echo 'done running all!'
