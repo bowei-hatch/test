@@ -7,9 +7,9 @@ on:
 
 jobs:
   cleaner:
-    runs-on:
-      - self-hosted
-      - ci
+#    runs-on:
+#      - self-hosted
+#      - ci
     steps:
       - name: Runner workspace path
         run: |
@@ -17,9 +17,9 @@ jobs:
           rm -rf "${{ github.workspace }}"
   trigger_hubot_deploy:
     name: Deploy services
-    runs-on:
-      - self-hosted
-      - ci
+#    runs-on:
+#      - self-hosted
+#      - ci
     steps:
     - name: Notify slack
       run: |

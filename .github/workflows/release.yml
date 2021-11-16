@@ -7,18 +7,18 @@ on:
 
 jobs:
   cleaner:
-    runs-on:
-      - self-hosted
-      - ci
+#    runs-on:
+#      - self-hosted
+#      - ci
     steps:
       - name: Runner workspace path
         run: |
           echo "Cleaning up previous run"
           rm -rf "${{ github.workspace }}"
   push:
-    runs-on:
-      - self-hosted
-      - ci
+#    runs-on:
+#      - self-hosted
+#      - ci
 
     steps:
       - name: Signal prod deploy
