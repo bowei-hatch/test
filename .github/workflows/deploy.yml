@@ -1,0 +1,26 @@
+name: Deploy
+
+on:
+  repository_dispatch:
+    types:
+      - deploy
+
+jobs:
+  cleaner:
+    runs-on:
+      - self-hosted
+      - ci
+    steps:
+      - name: Runner workspace path
+        run: |
+          echo "Cleaning up previous run"
+          rm -rf "${{ github.workspace }}"
+  trigger_hubot_deploy:
+    name: Deploy services
+    runs-on:
+      - self-hosted
+      - ci
+    steps:
+    - name: Notify slack
+      run: |
+        echo "got here"

@@ -1,0 +1,33 @@
+name: Release
+
+on:
+  push:
+    branches:
+      - release
+
+jobs:
+  cleaner:
+    runs-on:
+      - self-hosted
+      - ci
+    steps:
+      - name: Runner workspace path
+        run: |
+          echo "Cleaning up previous run"
+          rm -rf "${{ github.workspace }}"
+  push:
+    runs-on:
+      - self-hosted
+      - ci
+
+    steps:
+      - name: Signal prod deploy
+        uses: peter-evans/repository-dispatch@v1.1.1
+        with:
+          token: ${{ secrets.CI_GITHUB_ACTIONS_RUNNER_TOKEN }}
+          repository: hatchcredit/sakura-spark-starter
+          event-type: deploy
+          client-payload: |
+            {"ref": "${{ github.ref }}",
+             "sha": "${{ github.sha }}",
+             "what": "prod"}
