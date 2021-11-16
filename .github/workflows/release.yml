@@ -23,6 +23,12 @@ jobs:
 #      - ci
 
     steps:
+      - name: Run integration tests from this repo
+        run: |
+          echo "Running integration tests"
+          pwd
+          ls
+
       - name: Signal prod deploy
         uses: peter-evans/repository-dispatch@v1.1.1
         with:
