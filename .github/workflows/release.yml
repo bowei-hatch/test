@@ -28,7 +28,8 @@ jobs:
         run: |
           echo "Running integration tests"
           pwd
-          ls
+          ls -a
+          ./integration/scripts/run_all.sh
 
       - name: Signal prod deploy
         uses: peter-evans/repository-dispatch@v1.1.1
