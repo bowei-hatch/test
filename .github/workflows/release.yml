@@ -23,6 +23,7 @@ jobs:
 #      - ci
 
     steps:
+      - uses: actions/checkout@v2
       - name: Run integration tests from this repo
         run: |
           echo "Running integration tests"
